@@ -135,11 +135,6 @@ lcsv::csv_row::iterator lcsv::csv_row::insert(lcsv::csv_row::const_iterator posi
     return this->cells.insert(position, value);
 }
 
-lcsv::csv_row::iterator lcsv::csv_row::insert(lcsv::csv_row::const_iterator position, lcsv::csv_row::reference &value)
-{
-    return lcsv::csv_row::iterator();
-}
-
 lcsv::csv_row::iterator lcsv::csv_row::insert(lcsv::csv_row::const_iterator position, const vector &values)
 {
     return this->cells.insert(position, values.begin(), values.end());

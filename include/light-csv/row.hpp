@@ -59,7 +59,6 @@ namespace lcsv
         // Modifiers
         void clear();
         iterator insert(const_iterator position, const_reference value);
-        iterator insert(const_iterator position, reference& value);
         iterator insert(const_iterator position, const vector& values);
         iterator erase(const_iterator position);
         iterator erase(const_iterator first, const_iterator last);

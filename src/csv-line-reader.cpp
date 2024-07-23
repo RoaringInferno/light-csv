@@ -1,5 +1,4 @@
-#include "light-csv/csv-line-reader.hpp"
-#include "csv-line-reader.hpp"
+#include "internal/csv-line-reader.hpp"
 
 lcsv::csv_line_reader::csv_line_reader() :
     csv_string(),

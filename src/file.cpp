@@ -1,7 +1,6 @@
 #include "light-csv/file.hpp"
 
 #include <fstream>
-#include "file.hpp"
 
 lcsv::csv_file::csv_file() :
     path(),
@@ -122,11 +121,6 @@ void lcsv::csv_file::clear()
 }
 
 lcsv::csv_file::iterator lcsv::csv_file::insert(lcsv::csv_file::const_iterator position, lcsv::csv_file::const_reference value)
-{
-    return this->rows.insert(position, value);
-}
-
-lcsv::csv_file::iterator lcsv::csv_file::insert(lcsv::csv_file::const_iterator position, lcsv::csv_file::reference &value)
 {
     return this->rows.insert(position, value);
 }

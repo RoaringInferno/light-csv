@@ -102,7 +102,7 @@ bool lcsv::csv_header::empty() const
 
 lcsv::csv_header::size_type lcsv::csv_header::size() const
 {
-    this->column_names.size();
+    return this->column_names.size();
 }
 
 lcsv::csv_header::size_type lcsv::csv_header::max_size() const
@@ -117,7 +117,7 @@ void lcsv::csv_header::reserve(const lcsv::csv_header::size_type new_capacity)
 
 lcsv::csv_header::size_type lcsv::csv_header::capacity() const
 {
-    this->column_names.capacity();
+    return this->column_names.capacity();
 }
 
 void lcsv::csv_header::shrink_to_fit()
@@ -131,11 +131,6 @@ void lcsv::csv_header::clear()
 }
 
 lcsv::csv_header::iterator lcsv::csv_header::insert(lcsv::csv_header::const_iterator position, lcsv::csv_header::const_reference value)
-{
-    return this->column_names.insert(position, value);
-}
-
-lcsv::csv_header::iterator lcsv::csv_header::insert(lcsv::csv_header::const_iterator position, lcsv::csv_header::reference &value)
 {
     return this->column_names.insert(position, value);
 }
