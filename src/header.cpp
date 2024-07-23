@@ -1,5 +1,5 @@
 #include "light-csv/header.hpp"
-#include "light-csv/csv-line-reader.hpp"
+#include "internal/csv-line-reader.hpp"
 
 lcsv::header::header() :
     column_names()

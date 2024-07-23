@@ -1,5 +1,5 @@
 #include "light-csv/row.hpp"
-#include "light-csv/csv-line-reader.hpp"
+#include "internal/csv-line-reader.hpp"
 
 lcsv::row::row() :
     cells()
