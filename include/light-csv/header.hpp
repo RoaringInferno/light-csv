@@ -23,12 +23,11 @@ namespace lcsv
         typedef const value_type& const_reference;
     private: // Members
         vector column_names;
-        size_type column_name_count;
     public: // Methods
         header();
         header(const std::string& header_line);
         header(const vector& column_names);
-        header(const header& other) = default;
+        header(const header& other);
         ~header();
 
         std::string to_string() const;

@@ -28,12 +28,11 @@ namespace lcsv
         std::string path;
         header file_header;
         vector rows;
-        size_type row_count;
     public: // Methods
         file();
         file(const std::string& path);
         file(const header& file_header, const vector& rows);
-        file(const file& other) = default;
+        file(const file& other);
         ~file();
 
         // Element access
@@ -56,7 +55,6 @@ namespace lcsv
         iterator insert(const_iterator position, const_reference value);
         iterator insert(const_iterator position, reference& value);
         iterator insert(const_iterator position, const vector& values);
-        iterator insert(const_iterator position, std::initializer_list<value_type> values);
         iterator erase(const_iterator position);
         iterator erase(const_iterator first, const_iterator last);
         void push_back(const_reference value);

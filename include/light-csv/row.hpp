@@ -29,7 +29,7 @@ namespace lcsv
         row();
         row(const std::string& row_line);
         row(const vector& cells);
-        row(const row& other) = default;
+        row(const row& other);
         ~row();
 
         std::string to_string() const;

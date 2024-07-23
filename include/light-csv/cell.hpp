@@ -6,7 +6,7 @@ namespace lcsv
 {
     class cell
     {
-    public:
+    public: // Typedefs
         typedef std::string value_type;
         typedef value_type* pointer;
         typedef const value_type* const_pointer;
@@ -17,7 +17,7 @@ namespace lcsv
     public: // Methods
         cell();
         cell(const_reference value);
-        cell(const cell& other) = default;
+        cell(const cell& other);
         ~cell();
 
         std::string get_value() const;
