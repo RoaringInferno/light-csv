@@ -5,14 +5,16 @@
 
 namespace lcsv
 {
-    typedef unsigned char column_name_index_t;
-
     class header
     {
-    private:
+    public: // Typedefs
+        typedef unsigned char index;
+        typedef std::vector<std::string>::iterator iterator;
+        typedef std::vector<std::string>::const_iterator const_iterator;
+    private: // Members
         std::vector<std::string> column_names;
-        column_name_index_t column_name_count;
-    public:
+        index column_name_count;
+    public: // Methods
         header();
         header(const std::string& header_line);
         header(const header& other) = default;
@@ -30,5 +32,9 @@ namespace lcsv
 
         std::string to_string() const;
         operator std::string() const;
+
+        // Iterator
+        iterator begin();
+        iterator end();
     };
 }; // namespace lcsv

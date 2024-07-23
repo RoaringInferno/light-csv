@@ -8,30 +8,32 @@
 
 namespace lcsv
 {
-    typedef unsigned int row_index_t;
-
     class file
     {
-    private:
+    public: // Typedefs
+        typedef unsigned int index;
+        typedef std::vector<row>::iterator iterator;
+        typedef std::vector<row>::const_iterator const_iterator;
+    private: // Members
         std::string path;
         header file_header;
         std::vector<row> rows;
-        row_index_t row_count;
-    public:
+        index row_count;
+    public: // Methods
         file();
         file(const std::string& path);
         file(const file& other) = default;
         ~file();
 
         // Row Manipulation
-        row get_row(const row_index_t index);
+        row get_row(const index index);
         std::vector<row> get_rows();
         void add_row(const row& r);
         void add_rows(const std::vector<row>& rows);
-        void remove_row(const row_index_t index);
-        void remove_rows(const std::vector<row_index_t>& indexes);
+        void remove_row(const index index);
+        void remove_rows(const std::vector<index>& indexes);
         void remove_all_rows();
-        void set_row(const row_index_t index, const row& r);
+        void set_row(const index index, const row& r);
 
         // Header Manipulation
         header get_header();
@@ -42,7 +44,7 @@ namespace lcsv
         void set_path(const std::string& path);
 
         // Row Count
-        row_index_t get_row_count() const;
+        index get_row_count() const;
 
         // File I/O
         void read();
@@ -50,5 +52,9 @@ namespace lcsv
 
         std::string to_string() const;
         operator std::string() const;
+
+        // Iterator
+        iterator begin();
+        iterator end();
     };
 }; // namespace lcsv

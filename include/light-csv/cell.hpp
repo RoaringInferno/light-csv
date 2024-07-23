@@ -6,9 +6,9 @@ namespace lcsv
 {
     class cell
     {
-    private:
+    private: // Members
         std::string value;
-    public:
+    public: // Methods
         cell();
         cell(const std::string& value);
         cell(const cell& other) = default;
