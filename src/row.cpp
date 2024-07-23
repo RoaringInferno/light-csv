@@ -1,4 +1,5 @@
 #include "light-csv/row.hpp"
+#include "light-csv/csv-line-reader.hpp"
 
 lcsv::row::row() :
     cells()
@@ -8,7 +9,12 @@ lcsv::row::row() :
 lcsv::row::row(const std::string &row_line) :
     cells()
 {
-    // TODO: Implement
+    lcsv::csv_line_reader reader(row_line);
+    do {
+        this->cells.push_back(lcsv::cell(reader.read_cell()));
+        if (reader.right_separator_position() != reader.end()) { break; }
+        reader.advance();
+    } while (true);
 }
 
 lcsv::row::row(const vector &cells) :

@@ -1,5 +1,7 @@
 #include "light-csv/file.hpp"
 
+#include <fstream>
+
 lcsv::file::file() :
     path(),
     file_header(),
@@ -165,18 +167,43 @@ void lcsv::file::set_path(const std::string &path)
 
 void lcsv::file::read()
 {
-    // TODO: Implement
+    // Open file
+    std::ifstream file(this->path);
+    // Read header
+    std::string line;
+    std::getline(file, line);
+    this->file_header = header(line);
+    // Read rows
+    while (std::getline(file, line))
+    {
+        this->rows.push_back(row(line));
+    }
 }
 
 void lcsv::file::write()
 {
-    // TODO: Implement
+    // Open file
+    std::ofstream file(this->path);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Failed to open file: " + this->path);
+    }
+    // Make string
+    std::string file_string = this->to_string();
+    // Write string
+    file << file_string;
 }
 
 std::string lcsv::file::to_string() const
 {
-    std::string result;
-    // TODO: Implement
+    std::string result = "";
+    // Write header
+    result += this->file_header.to_string();
+    // Write rows
+    for (const row &_row : this->rows)
+    {
+        result += _row.to_string();
+    }
     return result;
 }
 

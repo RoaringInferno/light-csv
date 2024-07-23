@@ -14,18 +14,22 @@ namespace lcsv
         typedef const value_type& const_reference;
 
         typedef std::string::size_type size_type;
+        typedef std::string::iterator iterator;
+        typedef std::string::const_iterator const_iterator;
+        typedef std::string::reverse_iterator reverse_iterator;
+        typedef std::string::const_reverse_iterator const_reverse_iterator;
     private: // Members
         std::string csv_string;
         /**
          * @brief The position immediately following the left-hand separator. (The first character of the current cell)
          * @note 0-based index.
          */
-        std::string::iterator left_separator;
+        iterator left_separator;
         /**
          * @brief The position of the right-hand separator. (Immediately following the last character of the current cell)
          * @note 0-based index.
          */
-        std::string::iterator right_separator;
+        iterator right_separator;
 
         /**
          * @note 0-based index
@@ -48,14 +52,24 @@ namespace lcsv
         size_type size() const;
 
         // Iteration
-        size_type left_separator_position() const;
-        size_type right_separator_position() const;
+        const_iterator left_separator_position() const;
+        const_iterator right_separator_position() const;
         size_type block_size() const;
+
+        // Iterators
+        iterator begin();
+        iterator end();
+        const_iterator cbegin() const;
+        const_iterator cend() const;
+        reverse_iterator rbegin();
+        reverse_iterator rend();
+        const_reverse_iterator crbegin() const;
+        const_reverse_iterator crend() const;
 
         // CSV
         std::string read_cell() const;
-        void next_cell();
-        void previous_cell();
+        void advance();
+        void retreat();
 
         // column_number
         size_type get_column_number() const;
