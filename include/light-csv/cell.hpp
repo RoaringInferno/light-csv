@@ -21,5 +21,7 @@ namespace lcsv
 
         std::string to_string() const;
         operator std::string() const;
+
+        bool operator==(const cell& other) const;
     };
 }; // namespace lcsv

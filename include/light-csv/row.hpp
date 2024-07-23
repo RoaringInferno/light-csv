@@ -13,6 +13,8 @@ namespace lcsv
         typedef unsigned char index;
         typedef std::vector<cell>::iterator iterator;
         typedef std::vector<cell>::const_iterator const_iterator;
+        typedef std::vector<cell>::reverse_iterator reverse_iterator;
+        typedef std::vector<cell>::const_reverse_iterator const_reverse_iterator;
     private: // Members
         std::vector<cell> cells;
     public: // Methods
@@ -37,5 +39,12 @@ namespace lcsv
         // Iterator
         iterator begin();
         iterator end();
+        const_iterator cbegin();
+        const_iterator cend();
+        
+        reverse_iterator rbegin();
+        reverse_iterator rend();
+        const_reverse_iterator crbegin();
+        const_reverse_iterator crend();
     };
 }; // namespace lcsv

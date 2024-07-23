@@ -11,6 +11,8 @@ namespace lcsv
         typedef unsigned char index;
         typedef std::vector<std::string>::iterator iterator;
         typedef std::vector<std::string>::const_iterator const_iterator;
+        typedef std::vector<std::string>::reverse_iterator reverse_iterator;
+        typedef std::vector<std::string>::const_reverse_iterator const_reverse_iterator;
     private: // Members
         std::vector<std::string> column_names;
         index column_name_count;
@@ -36,5 +38,12 @@ namespace lcsv
         // Iterator
         iterator begin();
         iterator end();
+        const_iterator cbegin();
+        const_iterator cend();
+        
+        reverse_iterator rbegin();
+        reverse_iterator rend();
+        const_reverse_iterator crbegin();
+        const_reverse_iterator crend();
     };
 }; // namespace lcsv
