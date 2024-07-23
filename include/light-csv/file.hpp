@@ -8,10 +8,10 @@
 
 namespace lcsv
 {
-    class file
+    class csv_file
     {
     public: // Typedefs
-        typedef std::vector<row> vector;
+        typedef std::vector<csv_row> vector;
 
         typedef vector::size_type size_type;
         typedef vector::iterator iterator;
@@ -19,21 +19,21 @@ namespace lcsv
         typedef vector::reverse_iterator reverse_iterator;
         typedef vector::const_reverse_iterator const_reverse_iterator;
 
-        typedef row value_type;
+        typedef csv_row value_type;
         typedef value_type* pointer;
         typedef const value_type* const_pointer;
         typedef value_type& reference;
         typedef const value_type& const_reference;
     private: // Members
         std::string path;
-        header file_header;
+        csv_header file_header;
         vector rows;
     public: // Methods
-        file();
-        file(const std::string& path);
-        file(const header& file_header, const vector& rows);
-        file(const file& other);
-        ~file();
+        csv_file();
+        csv_file(const std::string& path);
+        csv_file(const csv_header& file_header, const vector& rows);
+        csv_file(const csv_file& other);
+        ~csv_file();
 
         // Element access
         reference at(const size_type index);
@@ -41,6 +41,12 @@ namespace lcsv
         reference front();
         reference back();
         pointer data();
+
+        const_reference at(const size_type index) const;
+        const_reference operator[](const size_type index) const;
+        const_reference front() const;
+        const_reference back() const;
+        const_pointer data() const;
 
         // Capacity
         bool empty() const;
@@ -61,11 +67,12 @@ namespace lcsv
         void pop_back();
         void resize(const size_type new_size);
         void resize(const size_type new_size, const_reference value);
-        void swap(file& other);
+        void swap(csv_file& other);
 
         // Header Manipulation
-        header& get_header();
-        void set_header(const header& h);
+        csv_header& header();
+        const csv_header& header() const;
+        
 
         // File Manipulation
         std::string get_path() const;

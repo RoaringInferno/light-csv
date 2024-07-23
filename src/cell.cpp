@@ -2,53 +2,53 @@
 #include "row.hpp"
 #include "cell.hpp"
 
-lcsv::cell::cell() :
+lcsv::csv_cell::csv_cell() :
     value("")
 {
 }
 
-lcsv::cell::cell(const_reference value) :
+lcsv::csv_cell::csv_cell(const_reference value) :
     value(value)
 {
 }
 
-lcsv::cell::cell(const cell &other) = default;
+lcsv::csv_cell::csv_cell(const csv_cell &other) = default;
 
-lcsv::cell::~cell()
+lcsv::csv_cell::~csv_cell()
 {
 }
 
-std::string lcsv::cell::get_value() const
+std::string lcsv::csv_cell::get_value() const
 {
     return this->value;
 }
 
-void lcsv::cell::set_value(const_reference value)
+void lcsv::csv_cell::set_value(const_reference value)
 {
     this->value = value;
 }
 
-lcsv::cell::pointer lcsv::cell::data()
+lcsv::csv_cell::pointer lcsv::csv_cell::data()
 {
     return &this->value;
 }
 
-bool lcsv::cell::is_empty() const
+bool lcsv::csv_cell::is_empty() const
 {
     return this->value != "";
 }
 
-std::string lcsv::cell::to_string() const
+std::string lcsv::csv_cell::to_string() const
 {
     return this->value;
 }
 
-lcsv::cell::operator std::string() const
+lcsv::csv_cell::operator std::string() const
 {
     return this->value;
 }
 
-lcsv::cell &lcsv::cell::operator=(const cell &other)
+lcsv::csv_cell &lcsv::csv_cell::operator=(const csv_cell &other)
 {
     if (this != &other) {
         this->value = other.value;
@@ -56,7 +56,7 @@ lcsv::cell &lcsv::cell::operator=(const cell &other)
     return *this;
 }
 
-bool lcsv::cell::operator==(const cell &other) const
+bool lcsv::csv_cell::operator==(const csv_cell &other) const
 {
     return this->value == other.value;
 }

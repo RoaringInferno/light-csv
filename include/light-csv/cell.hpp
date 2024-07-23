@@ -4,7 +4,7 @@
 
 namespace lcsv
 {
-    class cell
+    class csv_cell
     {
     public: // Typedefs
         typedef std::string value_type;
@@ -15,10 +15,10 @@ namespace lcsv
     private: // Members
         std::string value;
     public: // Methods
-        cell();
-        cell(const_reference value);
-        cell(const cell& other);
-        ~cell();
+        csv_cell();
+        csv_cell(const_reference value);
+        csv_cell(const csv_cell& other);
+        ~csv_cell();
 
         std::string get_value() const;
         void set_value(const_reference value);
@@ -29,7 +29,7 @@ namespace lcsv
         std::string to_string() const;
         operator std::string() const;
 
-        cell& operator=(const cell& other);
-        bool operator==(const cell& other) const;
+        csv_cell& operator=(const csv_cell& other);
+        bool operator==(const csv_cell& other) const;
     };
 }; // namespace lcsv

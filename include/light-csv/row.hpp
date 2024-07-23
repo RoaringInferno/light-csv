@@ -7,10 +7,10 @@
 
 namespace lcsv
 {
-    class row
+    class csv_row
     {
     public: // Typedefs
-        typedef std::vector<cell> vector;
+        typedef std::vector<csv_cell> vector;
 
         typedef vector::size_type size_type;
         typedef vector::iterator iterator;
@@ -18,19 +18,19 @@ namespace lcsv
         typedef vector::reverse_iterator reverse_iterator;
         typedef vector::const_reverse_iterator const_reverse_iterator;
 
-        typedef cell value_type;   
+        typedef csv_cell value_type;   
         typedef value_type* pointer;
         typedef const value_type& reference;
-        typedef value_type* const_pointer;
+        typedef const value_type* const_pointer;
         typedef const value_type& const_reference;
     private: // Members
         vector cells;
     public: // Methods
-        row();
-        row(const std::string& row_line);
-        row(const vector& cells);
-        row(const row& other);
-        ~row();
+        csv_row();
+        csv_row(const std::string& row_line);
+        csv_row(const vector& cells);
+        csv_row(const csv_row& other);
+        ~csv_row();
 
         std::string to_string() const;
         operator std::string() const;
@@ -41,6 +41,12 @@ namespace lcsv
         reference front();
         reference back();
         pointer data();
+
+        const_reference at(const size_type index) const;
+        const_reference operator[](const size_type index) const;
+        const_reference front() const;
+        const_reference back() const;
+        const_pointer data() const;
 
         // Capacity
         bool empty() const;
@@ -61,7 +67,7 @@ namespace lcsv
         void pop_back();
         void resize(const size_type new_size);
         void resize(const size_type new_size, const_reference value);
-        void swap(row& other);
+        void swap(csv_row& other);
 
         // Iterator
         iterator begin();

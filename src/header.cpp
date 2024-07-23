@@ -1,12 +1,12 @@
 #include "light-csv/header.hpp"
 #include "internal/csv-line-reader.hpp"
 
-lcsv::header::header() :
+lcsv::csv_header::csv_header() :
     column_names()
 {
 }
 
-lcsv::header::header(const std::string &header_line) :
+lcsv::csv_header::csv_header(const std::string &header_line) :
     column_names()
 {
     lcsv::csv_line_reader reader(header_line);
@@ -17,21 +17,21 @@ lcsv::header::header(const std::string &header_line) :
     } while (true);
 }
 
-lcsv::header::header(const vector &column_names) :
+lcsv::csv_header::csv_header(const vector &column_names) :
     column_names(column_names)
 {
 }
 
-lcsv::header::header(const header &other) :
+lcsv::csv_header::csv_header(const csv_header &other) :
     column_names(other.column_names)
 {
 }
 
-lcsv::header::~header()
+lcsv::csv_header::~csv_header()
 {
 }
 
-std::string lcsv::header::to_string() const
+std::string lcsv::csv_header::to_string() const
 {
     std::string result = "";
     for (const std::string &c : this->column_names) {
@@ -40,157 +40,182 @@ std::string lcsv::header::to_string() const
     return result;
 }
 
-lcsv::header::operator std::string() const
+lcsv::csv_header::operator std::string() const
 {
     return this->to_string();
 }
 
-lcsv::header::reference lcsv::header::at(const lcsv::header::size_type index)
+lcsv::csv_header::reference lcsv::csv_header::at(const lcsv::csv_header::size_type index)
 {
     return this->column_names.at(index);
 }
 
-lcsv::header::reference lcsv::header::operator[](const lcsv::header::size_type index)
+lcsv::csv_header::reference lcsv::csv_header::operator[](const lcsv::csv_header::size_type index)
 {
     return this->column_names[index];
 }
 
-lcsv::header::reference lcsv::header::front()
+lcsv::csv_header::reference lcsv::csv_header::front()
 {
     return this->column_names.front();
 }
 
-lcsv::header::reference lcsv::header::back()
+lcsv::csv_header::reference lcsv::csv_header::back()
 {
     return this->column_names.back();
 }
 
-lcsv::header::pointer lcsv::header::data()
+lcsv::csv_header::pointer lcsv::csv_header::data()
 {
     return this->column_names.data();
 }
 
-bool lcsv::header::empty() const
+lcsv::csv_header::const_reference lcsv::csv_header::at(const lcsv::csv_header::size_type index) const
+{
+    return this->column_names.at(index);
+}
+
+lcsv::csv_header::const_reference lcsv::csv_header::operator[](const lcsv::csv_header::size_type index) const
+{
+    return this->column_names[index];
+}
+
+lcsv::csv_header::const_reference lcsv::csv_header::front() const
+{
+    return this->column_names.front();
+}
+
+lcsv::csv_header::const_reference lcsv::csv_header::back() const
+{
+    return this->column_names.back();
+}
+
+lcsv::csv_header::const_pointer lcsv::csv_header::data() const
+{
+    return this->column_names.data();
+}
+
+bool lcsv::csv_header::empty() const
 {
     return this->column_names.empty();
 }
 
-lcsv::header::size_type lcsv::header::size() const
+lcsv::csv_header::size_type lcsv::csv_header::size() const
 {
     this->column_names.size();
 }
 
-lcsv::header::size_type lcsv::header::max_size() const
+lcsv::csv_header::size_type lcsv::csv_header::max_size() const
 {
     return this->column_names.max_size();
 }
 
-void lcsv::header::reserve(const lcsv::header::size_type new_capacity)
+void lcsv::csv_header::reserve(const lcsv::csv_header::size_type new_capacity)
 {
     this->column_names.reserve(new_capacity);
 }
 
-lcsv::header::size_type lcsv::header::capacity() const
+lcsv::csv_header::size_type lcsv::csv_header::capacity() const
 {
     this->column_names.capacity();
 }
 
-void lcsv::header::shrink_to_fit()
+void lcsv::csv_header::shrink_to_fit()
 {
     this->column_names.shrink_to_fit();
 }
 
-void lcsv::header::clear()
+void lcsv::csv_header::clear()
 {
     this->column_names.clear();
 }
 
-lcsv::header::iterator lcsv::header::insert(lcsv::header::const_iterator position, lcsv::header::const_reference value)
+lcsv::csv_header::iterator lcsv::csv_header::insert(lcsv::csv_header::const_iterator position, lcsv::csv_header::const_reference value)
 {
     return this->column_names.insert(position, value);
 }
 
-lcsv::header::iterator lcsv::header::insert(lcsv::header::const_iterator position, lcsv::header::reference &value)
+lcsv::csv_header::iterator lcsv::csv_header::insert(lcsv::csv_header::const_iterator position, lcsv::csv_header::reference &value)
 {
     return this->column_names.insert(position, value);
 }
 
-lcsv::header::iterator lcsv::header::insert(lcsv::header::const_iterator position, const vector &values)
+lcsv::csv_header::iterator lcsv::csv_header::insert(lcsv::csv_header::const_iterator position, const vector &values)
 {
     return this->column_names.insert(position, values.begin(), values.end());
 }
 
-lcsv::header::iterator lcsv::header::erase(lcsv::header::const_iterator position)
+lcsv::csv_header::iterator lcsv::csv_header::erase(lcsv::csv_header::const_iterator position)
 {
     return this->column_names.erase(position);
 }
 
-lcsv::header::iterator lcsv::header::erase(lcsv::header::const_iterator first, lcsv::header::const_iterator last)
+lcsv::csv_header::iterator lcsv::csv_header::erase(lcsv::csv_header::const_iterator first, lcsv::csv_header::const_iterator last)
 {
     return this->column_names.erase(first, last);
 }
 
-void lcsv::header::push_back(lcsv::header::const_reference value)
+void lcsv::csv_header::push_back(lcsv::csv_header::const_reference value)
 {
     this->column_names.push_back(value);
 }
 
-void lcsv::header::pop_back()
+void lcsv::csv_header::pop_back()
 {
     this->column_names.pop_back();
 }
 
-void lcsv::header::resize(const lcsv::header::size_type new_size)
+void lcsv::csv_header::resize(const lcsv::csv_header::size_type new_size)
 {
     this->column_names.resize(new_size);
 }
 
-void lcsv::header::resize(const lcsv::header::size_type new_size, lcsv::header::const_reference value)
+void lcsv::csv_header::resize(const lcsv::csv_header::size_type new_size, lcsv::csv_header::const_reference value)
 {
     this->column_names.resize(new_size, value);
 }
 
-void lcsv::header::swap(header &other)
+void lcsv::csv_header::swap(csv_header &other)
 {
     this->column_names.swap(other.column_names);
 }
 
-lcsv::header::iterator lcsv::header::begin()
+lcsv::csv_header::iterator lcsv::csv_header::begin()
 {
     return this->column_names.begin();
 }
 
-lcsv::header::iterator lcsv::header::end()
+lcsv::csv_header::iterator lcsv::csv_header::end()
 {
     return this->column_names.end();
 }
 
-lcsv::header::const_iterator lcsv::header::cbegin()
+lcsv::csv_header::const_iterator lcsv::csv_header::cbegin()
 {
     return this->column_names.cbegin();
 }
 
-lcsv::header::const_iterator lcsv::header::cend()
+lcsv::csv_header::const_iterator lcsv::csv_header::cend()
 {
     return this->column_names.cend();
 }
 
-lcsv::header::reverse_iterator lcsv::header::rbegin()
+lcsv::csv_header::reverse_iterator lcsv::csv_header::rbegin()
 {
     return this->column_names.rbegin();
 }
 
-lcsv::header::reverse_iterator lcsv::header::rend()
+lcsv::csv_header::reverse_iterator lcsv::csv_header::rend()
 {
     return this->column_names.rend();
 }
 
-lcsv::header::const_reverse_iterator lcsv::header::crbegin()
+lcsv::csv_header::const_reverse_iterator lcsv::csv_header::crbegin()
 {
     return this->column_names.crbegin();
 }
 
-lcsv::header::const_reverse_iterator lcsv::header::crend()
+lcsv::csv_header::const_reverse_iterator lcsv::csv_header::crend()
 {
     return this->column_names.crend();
 }

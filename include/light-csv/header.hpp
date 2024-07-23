@@ -5,7 +5,7 @@
 
 namespace lcsv
 {
-    class header
+    class csv_header
     {
     public: // Typedefs
         typedef std::vector<std::string> vector;
@@ -24,11 +24,11 @@ namespace lcsv
     private: // Members
         vector column_names;
     public: // Methods
-        header();
-        header(const std::string& header_line);
-        header(const vector& column_names);
-        header(const header& other);
-        ~header();
+        csv_header();
+        csv_header(const std::string& header_line);
+        csv_header(const vector& column_names);
+        csv_header(const csv_header& other);
+        ~csv_header();
 
         std::string to_string() const;
         operator std::string() const;
@@ -39,6 +39,12 @@ namespace lcsv
         reference front();
         reference back();
         pointer data();
+
+        const_reference at(const size_type index) const;
+        const_reference operator[](const size_type index) const;
+        const_reference front() const;
+        const_reference back() const;
+        const_pointer data() const;
 
         // Capacity
         bool empty() const;
@@ -59,7 +65,7 @@ namespace lcsv
         void pop_back();
         void resize(const size_type new_size);
         void resize(const size_type new_size, const_reference value);
-        void swap(header& other);
+        void swap(csv_header& other);
 
         // Iterator
         iterator begin();
