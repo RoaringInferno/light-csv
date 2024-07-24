@@ -1,6 +1,12 @@
 #include "light-csv/cell.hpp"
 #include "light-csv/row.hpp"
 
+bool contains_special_characters(const std::string& value)
+{
+    if (value.find_first_of(",\"") != std::string::npos) { return true; }
+    return false;
+}
+
 std::string lcsv::csv_cell::csv_decode(const std::string& value)
 {
     std::string result;
@@ -8,7 +14,7 @@ std::string lcsv::csv_cell::csv_decode(const std::string& value)
     {
         return "";
     }
-    if (value.front() == '"' && value.back() == '"') // Enclosed in quotes
+    if (contains_special_characters(value)) // Enclosed in quotes
     {
         result = value.substr(1, value.size() - 2);
     } else
@@ -31,7 +37,7 @@ std::string lcsv::csv_cell::csv_encode(const std::string& value)
     {
         return "";
     }
-    if (value.find_first_of(",\"\n") == std::string::npos) // No special characters
+    if (contains_special_characters(value)) // No special characters
     {
         return value;
     }
