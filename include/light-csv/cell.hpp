@@ -15,6 +15,9 @@ namespace lcsv
     private: // Members
         std::string value;
     public: // Methods
+        static std::string csv_decode(const std::string& value);
+        static std::string csv_encode(const std::string& value);
+
         csv_cell();
         csv_cell(const_reference value);
         csv_cell(const csv_cell& other);

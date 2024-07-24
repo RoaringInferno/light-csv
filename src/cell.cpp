@@ -1,13 +1,55 @@
 #include "light-csv/cell.hpp"
 #include "light-csv/row.hpp"
 
-lcsv::csv_cell::csv_cell() :
-    value("")
+std::string lcsv::csv_cell::csv_decode(const std::string& value)
 {
+    std::string result;
+    if (value == "") // Empty string
+    {
+        return "";
+    }
+    if (value.front() == '"' && value.back() == '"') // Enclosed in quotes
+    {
+        result = value.substr(1, value.size() - 2);
+    } else
+    {
+        return value;
+    }
+
+    // Replace double double quotes with single double quotes
+    size_t pos = 0;
+    while ((pos = result.find("\"\"", pos)) != std::string::npos)
+    {
+        result.replace(pos, 2, "\"");
+        pos += 1;
+    }
+    return result;
+}
+std::string lcsv::csv_cell::csv_encode(const std::string& value)
+{
+    if (value == "") // Empty string
+    {
+        return "";
+    }
+    if (value.find_first_of(",\"\n") == std::string::npos) // No special characters
+    {
+        return value;
+    }
+    std::string result =  value;
+    // Replace single double quotes with double double quotes
+    size_t pos = 0;
+    while ((pos = result.find("\"", pos)) != std::string::npos)
+    {
+        result.replace(pos, 1, "\"\"");
+        pos += 2;
+    }
+    return "\"" + result + "\"";
 }
 
+lcsv::csv_cell::csv_cell() = default;
+
 lcsv::csv_cell::csv_cell(const_reference value) :
-    value(value)
+    value(csv_decode(value))
 {
 }
 
@@ -39,7 +81,7 @@ bool lcsv::csv_cell::is_empty() const
 
 std::string lcsv::csv_cell::to_string() const
 {
-    return this->value;
+    return csv_encode(this->value);
 }
 
 lcsv::csv_cell::operator std::string() const
