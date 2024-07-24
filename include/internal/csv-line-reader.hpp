@@ -18,18 +18,21 @@ namespace lcsv
         typedef std::string::const_iterator const_iterator;
         typedef std::string::reverse_iterator reverse_iterator;
         typedef std::string::const_reverse_iterator const_reverse_iterator;
+    private: // Methods
+        const_iterator find_next_separator(const_iterator start) const;
+        const_reverse_iterator find_previous_separator(const_reverse_iterator start) const;
     private: // Members
         std::string csv_string;
         /**
-         * @brief The position immediately following the left-hand separator. (The first character of the current cell)
+         * @brief The position immediately following the left-hand separator. (The first character of the current cell, after the comma)
          * @note 0-based index.
          */
-        iterator left_separator;
+        const_iterator left_separator;
         /**
-         * @brief The position of the right-hand separator. (Immediately following the last character of the current cell)
+         * @brief The position of the right-hand separator. (Immediately following the last character of the current cell, on the comma)
          * @note 0-based index.
          */
-        iterator right_separator;
+        const_iterator right_separator;
 
         /**
          * @note 0-based index

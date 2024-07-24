@@ -12,7 +12,7 @@ lcsv::csv_row::csv_row(const std::string &row_line) :
     lcsv::csv_line_reader reader(row_line);
     do {
         this->cells.push_back(lcsv::csv_cell(reader.read_cell()));
-        if (reader.right_separator_position() != reader.end()) { break; }
+        if (reader.right_separator_position() == reader.end()) { break; }
         reader.advance();
     } while (true);
 }
@@ -37,6 +37,7 @@ std::string lcsv::csv_row::to_string() const
     for (const csv_cell &c : this->cells) {
         result += c.to_string() + ",";
     }
+    result.pop_back();
     return result;
 }
 

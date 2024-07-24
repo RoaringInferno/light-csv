@@ -184,10 +184,16 @@ void lcsv::csv_file::set_path(const std::string &path)
     this->path = path;
 }
 
+#include <iostream>
+
 void lcsv::csv_file::read()
 {
     // Open file
     std::ifstream file(this->path);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Failed to open file: " + this->path);
+    }
     // Read header
     std::string line;
     std::getline(file, line);

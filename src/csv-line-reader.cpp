@@ -8,24 +8,48 @@ lcsv::csv_line_reader::csv_line_reader() :
 {
 }
 
+#include <iostream>
+
 lcsv::csv_line_reader::csv_line_reader(const std::string &csv_string) :
     csv_string(csv_string),
-    left_separator(this->csv_string.begin()),
-    right_separator(std::find(this->csv_string.begin(), this->csv_string.end(), this->separator)), // Find the first separator
+    left_separator(),
+    right_separator(),
     column_number(0)
 {
+    left_separator = this->csv_string.begin();
+    right_separator = find_next_separator(this->csv_string.begin()); // Find the first separator
 }
 
 lcsv::csv_line_reader::csv_line_reader(const csv_line_reader &other) :
     csv_string(other.csv_string),
-    left_separator(this->csv_string.begin()),
-    right_separator(this->csv_string.begin()),
+    left_separator(),
+    right_separator(),
     column_number(other.column_number)
 {
+    left_separator = this->csv_string.begin();
+    right_separator = this->csv_string.begin();
 }
 
 lcsv::csv_line_reader::~csv_line_reader()    
 {
+}
+
+lcsv::csv_line_reader::const_iterator lcsv::csv_line_reader::find_next_separator(lcsv::csv_line_reader::const_iterator start) const
+{
+    while (*start != this->separator && start != this->csv_string.end())
+    {
+        start++;
+    }
+    return start;
+}
+
+lcsv::csv_line_reader::const_reverse_iterator lcsv::csv_line_reader::find_previous_separator(lcsv::csv_line_reader::const_reverse_iterator start) const
+{
+    while (*start != this->separator && start != this->csv_string.rend())
+    {
+        start++;
+    }
+    return start;
 }
 
 lcsv::csv_line_reader::reference lcsv::csv_line_reader::at(const lcsv::csv_line_reader::size_type index)
@@ -100,7 +124,17 @@ lcsv::csv_line_reader::const_reverse_iterator lcsv::csv_line_reader::crend() con
 }
 std::string lcsv::csv_line_reader::read_cell() const
 {
-    return std::string(this->left_separator, this->right_separator);
+    std::string result = "";
+    const_iterator read_head = this->left_separator;
+    while (read_head != this->right_separator)
+    {
+        if (*read_head != 13)
+        {
+            result += *read_head;
+        }
+        read_head++;
+    }
+    return result;
 }
 
 void lcsv::csv_line_reader::advance()
@@ -110,7 +144,7 @@ void lcsv::csv_line_reader::advance()
         return;
     }
     this->left_separator = this->right_separator + 1;
-    this->right_separator = std::find(this->left_separator, this->csv_string.end(), this->separator);
+    this->right_separator = find_next_separator(this->left_separator);
     this->column_number++;
 }
 
@@ -120,14 +154,14 @@ void lcsv::csv_line_reader::retreat()
     {
         return;
     }
-    this->right_separator = --this->left_separator; // The right separator is on the left separator
-    left_separator = std::find(
-        std::make_reverse_iterator(right_separator), // Reversing the right separator points to the character right before the left separator
-        this->csv_string.rend(), // Search to the beginning of the string (rend = reverse end, so the beginning from the reverse perspective)
-        this->separator // Search for the separator ',
-    ) // The result is a reverse iterator, pointing to the left separator
-    .base(); // Convert the reverse iterator to a forward iterator, now pointing to the character immediately following the left separator
+    this->right_separator = this->left_separator - 1; // The right separator is on the left separator
+    // Reversing the right separator points to the character right before the left separator
+    // Search to the beginning of the string (rend = reverse end, so the beginning from the reverse perspective)
+    // Search for the separator ',
+    // The result is a reverse iterator, pointing to the left separator
+    // Convert the reverse iterator to a forward iterator, now pointing to the character immediately following the left separator
     // If there was no separator before the left separator, the left separator is now the beginning of the string (The reversed iterator was looking past the beginning of the string, at rend())
+    this->left_separator = this->find_previous_separator(std::make_reverse_iterator(this->right_separator)).base(); // Find the previous separator
     this->column_number--;
 }
 

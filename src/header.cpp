@@ -6,13 +6,15 @@ lcsv::csv_header::csv_header() :
 {
 }
 
+#include <iostream>
+
 lcsv::csv_header::csv_header(const std::string &header_line) :
     column_names()
 {
     lcsv::csv_line_reader reader(header_line);
     do {
         this->column_names.push_back(reader.read_cell());
-        if (reader.right_separator_position() != reader.end()) { break; }
+        if (reader.right_separator_position() == reader.end()) { break; }
         reader.advance();
     } while (true);
 }
@@ -34,9 +36,10 @@ lcsv::csv_header::~csv_header()
 std::string lcsv::csv_header::to_string() const
 {
     std::string result = "";
-    for (const std::string &c : this->column_names) {
-        result += c + ",";
+    for (const std::string &col : this->column_names) {
+        result += col + ",";
     }
+    result.pop_back();
     return result;
 }
 
