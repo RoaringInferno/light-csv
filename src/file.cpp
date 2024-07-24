@@ -244,7 +244,6 @@ std::string lcsv::csv_file::to_string() const
     }
     // Remove last line delimiter ("\n")
     result.pop_back();
-    result.pop_back();
     return result;
 }
 
