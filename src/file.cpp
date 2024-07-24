@@ -1,6 +1,7 @@
 #include "light-csv/file.hpp"
 
 #include <fstream>
+#include "file.hpp"
 
 lcsv::csv_file::csv_file() :
     path(),
@@ -207,6 +208,20 @@ void lcsv::csv_file::write()
 {
     // Open file
     std::ofstream file(this->path);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Failed to open file: " + this->path);
+    }
+    // Make string
+    std::string file_string = this->to_string();
+    // Write string
+    file << file_string;
+}
+
+void lcsv::csv_file::write(const std::string &path)
+{
+    // Open file
+    std::ofstream file(path);
     if (!file.is_open())
     {
         throw std::runtime_error("Failed to open file: " + this->path);

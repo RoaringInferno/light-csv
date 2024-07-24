@@ -82,6 +82,7 @@ namespace lcsv
         // File I/O
         void read();
         void write();
+        void write(const std::string& path);
 
         std::string to_string() const;
         operator std::string() const;
