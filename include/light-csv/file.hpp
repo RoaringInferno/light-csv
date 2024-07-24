@@ -29,6 +29,8 @@ namespace lcsv
         csv_header file_header;
         vector rows;
     public: // Methods
+        const std::string line_delimiter = "\r\n";
+
         csv_file();
         csv_file(const std::string& path);
         csv_file(const csv_header& file_header, const vector& rows);

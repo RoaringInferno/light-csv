@@ -184,8 +184,6 @@ void lcsv::csv_file::set_path(const std::string &path)
     this->path = path;
 }
 
-#include <iostream>
-
 void lcsv::csv_file::read()
 {
     // Open file
@@ -223,12 +221,15 @@ std::string lcsv::csv_file::to_string() const
 {
     std::string result = "";
     // Write header
-    result += this->file_header.to_string();
+    result += this->file_header.to_string() += line_delimiter;
     // Write rows
     for (const csv_row &_row : this->rows)
     {
-        result += _row.to_string();
+        result += _row.to_string() += line_delimiter;
     }
+    // Remove last line delimiter ("\n")
+    result.pop_back();
+    result.pop_back();
     return result;
 }
 

@@ -1,4 +1,5 @@
 #include "light-csv/header.hpp"
+#include "light-csv/cell.hpp"
 #include "internal/csv-line-reader.hpp"
 
 lcsv::csv_header::csv_header() :
@@ -13,7 +14,7 @@ lcsv::csv_header::csv_header(const std::string &header_line) :
 {
     lcsv::csv_line_reader reader(header_line);
     do {
-        this->column_names.push_back(reader.read_cell());
+        this->column_names.push_back(lcsv::csv_cell::csv_decode(reader.read_cell()));
         if (reader.right_separator_position() == reader.end()) { break; }
         reader.advance();
     } while (true);
