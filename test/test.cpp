@@ -1,4 +1,4 @@
-#include "light-csv.hpp"
+#include "light-csv"
 
 #include <iostream>
 #include <string>
