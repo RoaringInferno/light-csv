@@ -6,6 +6,10 @@ project(light-csv)
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_library(light-csv STATIC ${SOURCES})
 target_include_directories(light-csv PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(light-csv PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/light-csv
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/internal
+)
 
 enable_testing()
 add_executable(tests test/test.cpp)
