@@ -1,7 +1,6 @@
-#include "light-csv/file.hpp"
+#include "light-csv_bits/file.hpp"
 
 #include <fstream>
-#include "file.hpp"
 
 lcsv::csv_file::csv_file() :
     path(),

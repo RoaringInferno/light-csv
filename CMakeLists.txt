@@ -12,6 +12,6 @@ target_include_directories(light-csv PRIVATE
 )
 
 enable_testing()
-add_executable(tests test/test.cpp)
-target_link_libraries(tests light-csv)
-add_test(NAME lcsv-tests COMMAND tests)
+add_executable(light-csv_tests test/test.cpp)
+target_link_libraries(light-csv_tests light-csv)
+add_test(NAME light-csv_tests COMMAND light-csv_tests)

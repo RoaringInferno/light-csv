@@ -1,5 +1,5 @@
-#include "light-csv/cell.hpp"
-#include "light-csv/row.hpp"
+#include "light-csv_bits/cell.hpp"
+#include "light-csv_bits/row.hpp"
 
 bool contains_special_characters(const std::string& value)
 {
