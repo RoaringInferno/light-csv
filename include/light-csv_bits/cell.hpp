@@ -32,6 +32,7 @@ namespace lcsv
         std::string to_string() const;
         operator std::string() const;
 
+        csv_cell& operator=(const_reference value);
         csv_cell& operator=(const csv_cell& other);
         bool operator==(const csv_cell& other) const;
     };

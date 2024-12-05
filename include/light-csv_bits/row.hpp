@@ -29,6 +29,7 @@ namespace lcsv
         csv_row();
         csv_row(const std::string& row_line);
         csv_row(const vector& cells);
+        csv_row(const std::vector<std::string>& cells);
         csv_row(const csv_row& other);
         ~csv_row();
 
@@ -63,6 +64,7 @@ namespace lcsv
         iterator erase(const_iterator position);
         iterator erase(const_iterator first, const_iterator last);
         void push_back(const_reference value);
+        void emplace_back(csv_cell::value_type&& value);
         void pop_back();
         void resize(const size_type new_size);
         void resize(const size_type new_size, const_reference value);

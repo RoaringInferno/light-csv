@@ -65,6 +65,7 @@ namespace lcsv
         iterator erase(const_iterator position);
         iterator erase(const_iterator first, const_iterator last);
         void push_back(const_reference value);
+        void emplace_back(std::vector<std::string> &&values);
         void pop_back();
         void resize(const size_type new_size);
         void resize(const size_type new_size, const_reference value);

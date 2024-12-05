@@ -156,6 +156,11 @@ void lcsv::csv_row::push_back(lcsv::csv_row::const_reference value)
     this->cells.push_back(value);
 }
 
+void lcsv::csv_row::emplace_back(csv_cell::value_type &&value)
+{
+    this->cells.emplace_back(value);
+}
+
 void lcsv::csv_row::pop_back()
 {
     this->cells.pop_back();
@@ -215,3 +220,7 @@ lcsv::csv_row::const_reverse_iterator lcsv::csv_row::crend()
 {
     return this->cells.crend();
 }
+
+lcsv::csv_row::csv_row(const std::vector<std::string>& cells) :
+    cells(cells.begin(), cells.end())
+{}

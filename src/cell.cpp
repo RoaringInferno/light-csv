@@ -95,6 +95,14 @@ lcsv::csv_cell::operator std::string() const
     return this->value;
 }
 
+lcsv::csv_cell &lcsv::csv_cell::operator=(const_reference value)
+{
+    if (this->value != value) {
+        this->value = value;
+    }
+    return *this;
+}
+
 lcsv::csv_cell &lcsv::csv_cell::operator=(const csv_cell &other)
 {
     if (this != &other) {
