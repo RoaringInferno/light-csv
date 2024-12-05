@@ -206,7 +206,8 @@ void lcsv::csv_file::read()
 void lcsv::csv_file::write()
 {
     // Open file
-    std::ofstream file(this->path);
+    // overwrite file
+    std::ofstream file(this->path, std::ios::trunc);
     if (!file.is_open())
     {
         throw std::runtime_error("Failed to open file: " + this->path);
