@@ -30,6 +30,7 @@ namespace lcsv
         csv_row(const std::string& row_line);
         csv_row(const vector& cells);
         csv_row(const std::vector<std::string>& cells);
+        csv_row(const std::vector<std::string>&& cells);
         csv_row(const csv_row& other);
         ~csv_row();
 

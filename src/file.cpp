@@ -145,6 +145,11 @@ void lcsv::csv_file::push_back(lcsv::csv_file::const_reference value)
     this->rows.push_back(value);
 }
 
+void lcsv::csv_file::emplace_back(const std::vector<std::string> &values)
+{
+    this->rows.emplace_back(values);
+}
+
 void lcsv::csv_file::emplace_back(std::vector<std::string> &&values)
 {
     this->rows.emplace_back(values);

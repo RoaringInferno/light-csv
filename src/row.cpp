@@ -222,5 +222,17 @@ lcsv::csv_row::const_reverse_iterator lcsv::csv_row::crend()
 }
 
 lcsv::csv_row::csv_row(const std::vector<std::string>& cells) :
-    cells(cells.begin(), cells.end())
-{}
+    cells(cells.size())
+{
+    for (size_t i = 0; i < cells.size(); i++) {
+        this->cells[i] = lcsv::csv_cell(cells[i]);
+    }
+}
+
+lcsv::csv_row::csv_row(const std::vector<std::string> &&cells) :
+    cells(cells.size())
+{
+    for (size_t i = 0; i < cells.size(); i++) {
+        this->cells[i] = std::move(lcsv::csv_cell(cells[i]));
+    }
+}
