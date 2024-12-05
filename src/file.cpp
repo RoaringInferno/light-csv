@@ -200,7 +200,10 @@ void lcsv::csv_file::read()
     std::ifstream file(this->path);
     if (!file.is_open())
     {
-        throw std::runtime_error("Failed to open file: " + this->path);
+        // throw std::runtime_error("Failed to open file: " + this->path);
+        // Create file
+        std::ofstream new_file(this->path);
+        return;
     }
     // Read header
     std::string line;
