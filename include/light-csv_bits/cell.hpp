@@ -34,6 +34,7 @@ namespace lcsv
 
         csv_cell& operator=(const_reference value);
         csv_cell& operator=(const csv_cell& other);
+        bool operator==(const_reference value) const;
         bool operator==(const csv_cell& other) const;
     };
 }; // namespace lcsv

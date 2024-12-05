@@ -1,5 +1,6 @@
 #include "light-csv_bits/cell.hpp"
 #include "light-csv_bits/row.hpp"
+#include "cell.hpp"
 
 bool contains_special_characters(const std::string& value)
 {
@@ -109,6 +110,11 @@ lcsv::csv_cell &lcsv::csv_cell::operator=(const csv_cell &other)
         this->value = other.value;
     }
     return *this;
+}
+
+bool lcsv::csv_cell::operator==(const_reference value) const
+{
+    return this->value == value;
 }
 
 bool lcsv::csv_cell::operator==(const csv_cell &other) const
