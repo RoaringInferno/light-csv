@@ -92,12 +92,16 @@ namespace lcsv
         // Iterator
         iterator begin();
         iterator end();
-        const_iterator cbegin();
-        const_iterator cend();
+        const_iterator cbegin() const;
+        const_iterator cend() const;
+        const_iterator begin() const { return this->cbegin(); };
+        const_iterator end() const { return this->cend(); };
 
         reverse_iterator rbegin();
         reverse_iterator rend();
-        const_reverse_iterator crbegin();
-        const_reverse_iterator crend();
+        const_reverse_iterator crbegin() const;
+        const_reverse_iterator crend() const;
+        const_reverse_iterator rbegin() const { return this->crbegin(); };
+        const_reverse_iterator rend() const { return this->crend(); };
     };
 }; // namespace lcsv
