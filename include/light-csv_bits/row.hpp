@@ -81,5 +81,8 @@ namespace lcsv
         reverse_iterator rend();
         const_reverse_iterator crbegin();
         const_reverse_iterator crend();
+
+        // Access
+        void set(const size_type index, const std::string &value);
     };
 }; // namespace lcsv
