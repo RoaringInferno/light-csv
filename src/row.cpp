@@ -6,8 +6,12 @@ lcsv::csv_row::csv_row() :
 {
 }
 
-lcsv::csv_row::csv_row(const std::string &row_line) :
-    cells()
+lcsv::csv_row::csv_row(const size_t size) :
+    cells(size)
+{
+}
+
+lcsv::csv_row::csv_row(const std::string &row_line) : cells()
 {
     lcsv::csv_line_reader reader(row_line);
     do {

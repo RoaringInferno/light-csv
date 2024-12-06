@@ -27,6 +27,7 @@ namespace lcsv
         vector cells;
     public: // Methods
         csv_row();
+        csv_row(const size_t size);
         csv_row(const std::string& row_line);
         csv_row(const vector& cells);
         csv_row(const std::vector<std::string>& cells);
