@@ -275,12 +275,12 @@ lcsv::csv_file::iterator lcsv::csv_file::end()
     return this->rows.end();
 }
 
-lcsv::csv_file::const_iterator lcsv::csv_file::cbegin()
+lcsv::csv_file::const_iterator lcsv::csv_file::cbegin() const
 {
     return this->rows.cbegin();
 }
 
-lcsv::csv_file::const_iterator lcsv::csv_file::cend()
+lcsv::csv_file::const_iterator lcsv::csv_file::cend() const
 {
     return this->rows.cend();
 }
@@ -295,12 +295,12 @@ lcsv::csv_file::reverse_iterator lcsv::csv_file::rend()
     return this->rows.rend();
 }
 
-lcsv::csv_file::const_reverse_iterator lcsv::csv_file::crbegin()
+lcsv::csv_file::const_reverse_iterator lcsv::csv_file::crbegin() const
 {
     return this->rows.crbegin();
 }
 
-lcsv::csv_file::const_reverse_iterator lcsv::csv_file::crend()
+lcsv::csv_file::const_reverse_iterator lcsv::csv_file::crend() const
 {
     return this->rows.crend();
 }
