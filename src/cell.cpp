@@ -37,7 +37,7 @@ std::string lcsv::csv_cell::csv_encode(const std::string& value)
     {
         return "";
     }
-    if (contains_special_characters(value)) // No special characters
+    if (!contains_special_characters(value)) // No special characters
     {
         return value;
     }
