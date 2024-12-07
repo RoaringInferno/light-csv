@@ -64,5 +64,39 @@ int main(int argc, char **argv) {
     }
 
     verify_numbers_csv(files[0]);
+
+    // Write test
+    const std::vector<std::string> write_header = {"Header", "B", "C"};
+    const std::vector<std::vector<std::string>> write_data = {
+        {"1", "2", "3"},
+        {"4", "5", "6"},
+        {"7", "8", "9"},
+        {"Hello", "World", "!"},
+        {"10", "11", "12"},
+    };
+
+    { // Writing data
+        std::cout << "Writing data\n";
+        lcsv::csv_file write_test("write_test.csv");
+        write_test.header() = write_header;
+        for (int i = 0; i < write_data.size(); i++) {
+            write_test.push_back(write_data[i]);
+        }
+        write_test.write();
+    }
+
+    // Reading data
+    std::cout << "Reading data to verify\n";
+    lcsv::csv_file write_test("write_test.csv");
+    for (unsigned int i = 0; i < write_header.size(); i++) {
+        assert(write_test.header()[i] == write_header[i]);
+    }
+    for (unsigned int i = 0; i < write_data.size(); i++) {
+        for (unsigned int j = 0; j < write_header.size(); j++)
+        {
+            assert(write_test[i][j].get_value() == write_data[i][j]);
+        }
+    }
+
     return 0;
 }

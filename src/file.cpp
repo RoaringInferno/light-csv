@@ -256,7 +256,10 @@ std::string lcsv::csv_file::to_string() const
         result += _row.to_string() += line_delimiter;
     }
     // Remove last line delimiter ("\n")
-    result.pop_back();
+    for (size_t i = 0; i < line_delimiter.size(); i++)
+    {
+        result.pop_back();
+    }
     return result;
 }
 
