@@ -249,11 +249,6 @@ std::string lcsv::csv_file::to_string() const
     {
         result += _row.to_string() += line_delimiter;
     }
-    // Remove last line delimiter
-    if (!result.empty())
-    {
-        result.erase(result.size() - line_delimiter.size());
-    }
     return result;
 }
 
