@@ -195,6 +195,12 @@ void lcsv::csv_file::set_path(const std::string &path)
     this->path = path;
 }
 
+void lcsv::csv_file::wipe_file()
+{
+    std::ofstream file(this->path, std::ios::trunc);
+    file.close();
+}
+
 void lcsv::csv_file::read()
 {
     // Open file

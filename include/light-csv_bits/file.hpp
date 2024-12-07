@@ -80,6 +80,7 @@ namespace lcsv
         // File Manipulation
         std::string get_path() const;
         void set_path(const std::string& path);
+        void wipe_file();
 
         // File I/O
         void read();
