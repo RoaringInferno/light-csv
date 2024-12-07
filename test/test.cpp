@@ -21,7 +21,7 @@ void verify_numbers_csv(lcsv::csv_file& file)
     assert(file.header()[1] == "x10");
     assert(file.header()[2] == "x7");
     assert(file.header()[3] == "Numberx4");
-    assert(file.header()[4] == "\"+40\"");
+    assert(file.header()[4] == "+40");
     assert(file.header()[5] == "*0.1");
     assert(file.size() == 1000); // 1000 rows
     unsigned int i = 1;

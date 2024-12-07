@@ -33,6 +33,7 @@ lcsv::csv_file::csv_file(const csv_file &other) :
 
 lcsv::csv_file::~csv_file()
 {
+    this->write();
 }
 
 lcsv::csv_file::reference lcsv::csv_file::at(const lcsv::csv_file::size_type index)
@@ -214,35 +215,28 @@ void lcsv::csv_file::read()
     {
         this->rows.push_back(csv_row(line));
     }
+    file.close();
 }
 
 void lcsv::csv_file::write()
 {
-    // Open file
-    // overwrite file
-    std::ofstream file(this->path, std::ios::trunc);
-    if (!file.is_open())
-    {
-        throw std::runtime_error("Failed to open file: " + this->path);
-    }
-    // Make string
-    std::string file_string = this->to_string();
-    // Write string
-    file << file_string;
+    this->write(this->path);
 }
 
 void lcsv::csv_file::write(const std::string &path)
 {
+    // Make string
+    std::string file_string = this->to_string();
+
     // Open file
-    std::ofstream file(path);
+    std::ofstream file(path, std::ios::trunc);
     if (!file.is_open())
     {
         throw std::runtime_error("Failed to open file: " + this->path);
     }
-    // Make string
-    std::string file_string = this->to_string();
     // Write string
     file << file_string;
+    file.close();
 }
 
 std::string lcsv::csv_file::to_string() const
@@ -255,10 +249,10 @@ std::string lcsv::csv_file::to_string() const
     {
         result += _row.to_string() += line_delimiter;
     }
-    // Remove last line delimiter ("\n")
-    for (size_t i = 0; i < line_delimiter.size(); i++)
+    // Remove last line delimiter
+    if (!result.empty())
     {
-        result.pop_back();
+        result.erase(result.size() - line_delimiter.size());
     }
     return result;
 }
