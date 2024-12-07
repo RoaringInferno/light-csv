@@ -77,11 +77,15 @@ namespace lcsv
         iterator end();
         const_iterator cbegin() const;
         const_iterator cend() const;
+        const_iterator begin() const { return cbegin(); };
+        const_iterator end() const { return cend(); };
 
         reverse_iterator rbegin();
         reverse_iterator rend();
         const_reverse_iterator crbegin() const;
         const_reverse_iterator crend() const;
+        const_reverse_iterator rbegin() const { return crbegin(); };
+        const_reverse_iterator rend() const { return crend(); };
 
         // Access
         void set(const size_type index, const std::string &value);
